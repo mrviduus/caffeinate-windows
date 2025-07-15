@@ -50,10 +50,13 @@ caffeinate-windows/
 │   ├── logo.png       # README logo
 │   ├── caffeine.png   # Source image
 │   └── caffeine.ico   # Application icon
-├── dist/              # Built executables (after build)
 ├── build.sh           # Cross-platform build script
 ├── build.bat          # Windows build script
 └── README.md          # This file
+
+# After building:
+├── dist/              # Built executables (created after build)
+│   └── win-x64/       # Windows x64 executable and dependencies
 ```
 
 ---

@@ -2,6 +2,9 @@
 .vs/
 .vscode/
 
+# Distribution/Build output
+dist/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
