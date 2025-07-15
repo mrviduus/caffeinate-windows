@@ -9,24 +9,36 @@
 `caffeinate.ps1` prevents your PC from sleeping, turning off the display, or idling out—exactly like the macOS `caffeinate` utility.  
 It relies solely on the Win32 API (`SetThreadExecutionState`) and therefore **requires no installation, admin rights, or external modules.**
 
-## ✨ Recent Improvements
+## ✨ Features
 
-This script has been enhanced with:
-- **Better error handling** and validation
-- **Enhanced documentation** with detailed parameter help
-- **Improved code organization** with modular functions
+This PowerShell script provides:
+- **Enhanced error handling** and validation
+- **Detailed documentation** with parameter help  
+- **Modular functions** for better code organization
 - **Verbose logging** support for troubleshooting
-- **More robust process management** with proper cleanup
+- **Robust process management** with proper cleanup
 - **PowerShell best practices** throughout
 
 Use `Get-Help .\caffeinate.ps1 -Full` to see detailed documentation.
 
 ---
 
-## Features
+## Project Structure
 
-| Capability | macOS flag | Windows equivalent | Supported? |
-|------------|-----------|--------------------|------------|
+```
+caffeinate-windows/
+├── caffeinate.ps1      # Main PowerShell script
+├── img/               # Logo and assets
+│   └── logo.png       # README logo
+└── README.md          # This documentation
+```
+
+---
+
+## Capabilities
+
+| Feature | macOS flag | Windows equivalent | Supported? |
+|---------|-----------|-------------------|------------|
 | Keep display awake | `-d` | `ES_DISPLAY_REQUIRED` | ✔ |
 | Prevent system sleep / idle | `-i`, `-s` | `ES_SYSTEM_REQUIRED` | ✔ |
 | Announce "user active" pulse | `-u` | `ES_USER_PRESENT` | ✔ |
@@ -38,33 +50,10 @@ Use `Get-Help .\caffeinate.ps1 -Full` to see detailed documentation.
 
 ---
 
-## Project Structure
-
-```
-caffeinate-windows/
-├── caffeinate.ps1      # Main PowerShell script
-├── src/               # C# source code
-│   ├── Program.cs     # Windows Forms application
-│   └── caffeinate.csproj  # .NET project file
-├── img/               # Images and icons
-│   ├── logo.png       # README logo
-│   ├── caffeine.png   # Source image
-│   └── caffeine.ico   # Application icon
-├── build.sh           # Cross-platform build script
-├── build.bat          # Windows build script
-└── README.md          # This file
-
-# After building:
-├── dist/              # Built executables (created after build)
-│   └── win-x64/       # Windows x64 executable and dependencies
-```
-
----
-
-## Quick start
+## Quick Start
 
 1. **Download** `caffeinate.ps1` or clone this repository.
-2. Ensure scripts can run for your user (one‑time):
+2. Ensure scripts can run for your user (one‑time setup):
 
    ```powershell
    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
@@ -81,25 +70,24 @@ caffeinate-windows/
    caffeinate -i -t 1800
 
    # Stay awake only while a long build runs
-   caffeinate -s -- msbuild MySolution.sln /m
+   caffeinate -i -- msbuild MySolution.sln
+
+   # Show detailed logging
+   caffeinate -d -t 300 -Verbose
    ```
-
-Calling from **`cmd.exe`**?  Prefix with `pwsh` or `powershell`:
-
-```cmd
-pwsh caffeinate.ps1 -d
-```
 
 ---
 
-## Command‑line reference
+## Usage
 
-```text
-caffeinate.ps1 [-d] [-i] [-s] [-u] [-t seconds] [-Verbose] [--] [command [args…]]
+```
+SYNTAX
+    caffeinate.ps1 [-d] [-i] [-s] [-u] [-t <seconds>] [-Verbose] [-- <command>]
 
-  -d        Prevent display sleep.
-  -i        Prevent system sleep due to idle (works on AC or battery).
-  -s        Prevent system sleep while on AC power (alias for -i; no distinction on Windows).
+PARAMETERS
+  -d        Prevent the display from sleeping.
+  -i        Prevent the system from idle sleeping.
+  -s        Prevent the system from sleeping (same as -i).
   -u        Signal "user present" once (wakes display if already asleep).
   -t n      Hold the assertion for n seconds, then exit.
   -Verbose  Show detailed logging and status information.
@@ -124,7 +112,28 @@ Get-Help .\caffeinate.ps1 -Parameter d
 
 ---
 
-## Verifying it works
+## Examples
+
+```powershell
+# Keep display awake for 1 hour
+.\caffeinate.ps1 -d -t 3600
+
+# Prevent system sleep during a long download
+.\caffeinate.ps1 -i -t 7200
+
+# Keep awake while running a command
+.\caffeinate.ps1 -d -i -- docker build -t myapp .
+
+# Wake display and keep it awake indefinitely
+.\caffeinate.ps1 -u -d
+
+# Run with detailed logging
+.\caffeinate.ps1 -d -t 1800 -Verbose
+```
+
+---
+
+## Verifying It Works
 
 Run `powercfg /requests` in another terminal.  
 While `caffeinate.ps1` is active you should see an **EXECUTION** request attributed to `powershell.exe` (or `pwsh.exe`) with the flags you specified.
@@ -134,46 +143,6 @@ For detailed monitoring, run the script with the `-Verbose` flag:
 ```powershell
 # Run with verbose output to see what's happening
 .\caffeinate.ps1 -d -t 300 -Verbose
-```
-
----
-
-## Building Executable Version
-
-You can build a self-contained executable version from the source code:
-
-### Prerequisites
-- .NET 8 SDK
-- Windows (or Windows targeting enabled for cross-platform builds)
-
-### Build Instructions
-
-```bash
-# Navigate to source directory
-cd src
-
-# Build optimized console executable
-dotnet publish caffeinate.csproj -c Release -r win-x64 --self-contained -o ../dist/win-x64
-
-# Or use the provided build scripts
-../build.sh    # Cross-platform
-../build.bat   # Windows
-```
-
-### Executable Features
-- **Self-contained** - No dependencies required
-- **Same functionality** - Identical command-line interface as PowerShell script
-- **System tray support** - Shows coffee cup icon in Windows system tray
-- **Better performance** - Faster startup than PowerShell script
-- **Size**: ~146MB (includes Windows Forms runtime)
-
-### Using the Executable
-
-```cmd
-# Same commands as PowerShell version
-./dist/win-x64/caffeinate.exe -d -t 3600    # Keep display awake for 1 hour
-./dist/win-x64/caffeinate.exe -i -- build.bat    # Keep system awake during build
-./dist/win-x64/caffeinate.exe -h            # Show help
 ```
 
 ---
@@ -192,6 +161,34 @@ dotnet publish caffeinate.csproj -c Release -r win-x64 --self-contained -o ../di
 - **"No power management flags specified"** – You must specify at least one flag (`-d`, `-i`, `-s`, or `-u`).
 - **"Failed to set power state"** – Check if another application is interfering with power management.
 - **"Command parameter specified but empty"** – Make sure you provide a valid command after the flags.
+
+---
+
+## PowerShell Compatibility
+
+- **Windows PowerShell 5.1** ✔
+- **PowerShell 7+** ✔
+- **PowerShell Core 6.x** ✔
+
+The script uses only built-in PowerShell features and Win32 APIs available on all Windows versions.
+
+---
+
+## Installation
+
+### Option 1: Download Single File
+Download `caffeinate.ps1` and place it in a folder on your PATH.
+
+### Option 2: Clone Repository
+```bash
+git clone https://github.com/mrviduus/caffeinate-windows.git
+cd caffeinate-windows
+```
+
+### Option 3: PowerShell Gallery (Coming Soon)
+```powershell
+Install-Script -Name caffeinate
+```
 
 ---
 
