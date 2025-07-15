@@ -28,6 +28,8 @@ Use `Get-Help .\caffeinate.ps1 -Full` to see detailed documentation.
 ```
 caffeinate-windows/
 ├── caffeinate.ps1      # Main PowerShell script
+├── install.bat         # Easy installer (adds to PATH)
+├── uninstall.bat       # Uninstaller
 ├── img/               # Logo and assets
 │   └── logo.png       # README logo
 └── README.md          # This documentation
@@ -52,17 +54,12 @@ caffeinate-windows/
 
 ## Quick Start
 
-1. **Download** `caffeinate.ps1` or clone this repository.
-2. Ensure scripts can run for your user (one‑time setup):
+### Easy Installation
+1. **Download** this repository or clone it
+2. **Run** `install.bat` (right-click → "Run as administrator" for system-wide installation)
+3. **Open a new command prompt** and start using `caffeinate`:
 
-   ```powershell
-   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-   ```
-
-3. Place the script in a folder on your **`PATH`** (e.g. `C:\Tools`).
-4. Use it exactly as you would on macOS:
-
-   ```powershell
+   ```cmd
    # Keep the display awake indefinitely
    caffeinate -d
 
@@ -74,6 +71,17 @@ caffeinate-windows/
 
    # Show detailed logging
    caffeinate -d -t 300 -Verbose
+   ```
+
+### Manual Setup (Alternative)
+1. **Download** `caffeinate.ps1` or clone this repository
+2. **Set execution policy** (one‑time setup):
+   ```powershell
+   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+   ```
+3. **Place the script** in a folder on your `PATH` or run directly:
+   ```powershell
+   .\caffeinate.ps1 -d -t 3600
    ```
 
 ---
@@ -176,18 +184,46 @@ The script uses only built-in PowerShell features and Win32 APIs available on al
 
 ## Installation
 
-### Option 1: Download Single File
+### 🚀 Easy Installation (Recommended)
+
+1. **Download or clone** this repository
+2. **Run the installer** as administrator (for system-wide) or as user:
+   ```cmd
+   install.bat
+   ```
+3. **Open a new command prompt** and use `caffeinate` from anywhere:
+   ```cmd
+   caffeinate -d -t 3600    # Keep display awake for 1 hour
+   caffeinate -h            # Show help
+   ```
+
+The installer will:
+- ✅ Copy the script to the appropriate location
+- ✅ Add it to your system PATH automatically  
+- ✅ Set up PowerShell execution policy
+- ✅ Create a wrapper so you can use `caffeinate` instead of `.\caffeinate.ps1`
+
+### Manual Installation Options
+
+#### Option 1: Download Single File
 Download `caffeinate.ps1` and place it in a folder on your PATH.
 
-### Option 2: Clone Repository
+#### Option 2: Clone Repository
 ```bash
 git clone https://github.com/mrviduus/caffeinate-windows.git
 cd caffeinate-windows
 ```
 
-### Option 3: PowerShell Gallery (Coming Soon)
+#### Option 3: PowerShell Gallery (Coming Soon)
 ```powershell
 Install-Script -Name caffeinate
+```
+
+### Uninstallation
+
+To remove caffeinate from your system:
+```cmd
+uninstall.bat
 ```
 
 ---
