@@ -107,20 +107,38 @@ assertion indefinitely until you press Ctrl‑C.
 
 ### Getting Help
 
-```powershell
-# Show basic help
-Get-Help .\caffeinate.ps1
+```cmd
+# After installation, show basic help
+caffeinate -h
 
-# Show detailed documentation with examples
+# For PowerShell detailed help (if running manually)
 Get-Help .\caffeinate.ps1 -Full
-
-# Show parameter information
-Get-Help .\caffeinate.ps1 -Parameter d
 ```
 
 ---
 
 ## Examples
+
+```cmd
+# Keep display awake for 1 hour
+caffeinate -d -t 3600
+
+# Prevent system sleep during a long download
+caffeinate -i -t 7200
+
+# Keep awake while running a command
+caffeinate -d -i -- docker build -t myapp .
+
+# Wake display and keep it awake indefinitely
+caffeinate -u -d
+
+# Run with detailed logging
+caffeinate -d -t 1800 -Verbose
+```
+
+### Manual Usage Examples (if not installed)
+
+If you haven't run the installer, use these commands:
 
 ```powershell
 # Keep display awake for 1 hour
@@ -144,23 +162,24 @@ Get-Help .\caffeinate.ps1 -Parameter d
 ## Verifying It Works
 
 Run `powercfg /requests` in another terminal.  
-While `caffeinate.ps1` is active you should see an **EXECUTION** request attributed to `powershell.exe` (or `pwsh.exe`) with the flags you specified.
+While `caffeinate` is active you should see an **EXECUTION** request attributed to `powershell.exe` (or `pwsh.exe`) with the flags you specified.
 
-For detailed monitoring, run the script with the `-Verbose` flag:
+For detailed monitoring, run with the `-Verbose` flag:
 
-```powershell
+```cmd
 # Run with verbose output to see what's happening
-.\caffeinate.ps1 -d -t 300 -Verbose
+caffeinate -d -t 300 -Verbose
 ```
 
 ---
 
 ## Troubleshooting
 
+* **'caffeinate' is not recognized** – Make sure you ran `install.bat` and opened a new command prompt.
 * **Script won't run** – Make sure you changed your execution policy (`RemoteSigned` is sufficient).
 * **Display still turns off** – Include **`-d`**. The default without flags does *not* assert display wakefulness.
 * **Laptop sleeps on lid close** – Hardware lid switches override software requests. This is expected.
-* **Need help with parameters** – Run `Get-Help .\caffeinate.ps1 -Full` for detailed documentation.
+* **Need help with parameters** – Run `caffeinate -h` for quick help or `Get-Help .\caffeinate.ps1 -Full` for detailed documentation.
 * **Want to see what's happening** – Use the `-Verbose` flag for detailed logging.
 * **Command fails to execute** – The script now provides better error messages and exit codes.
 
