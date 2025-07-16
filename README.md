@@ -24,3 +24,12 @@ On launch it prints a cup ASCII logo, then runs until you hit **Ctrl +C**.
 (resource ID `IDR_PNG1`) for reuse in a GUI variant.
 
 ## Usage
+caffeine.exe        # runs in foreground, prints status
+
+Put a shortcut to `caffeine.exe` in **shell:startup** (Windows start-up folder) if you want it to auto-launch.  
+Add `cmd /c start /min "" caffeine.exe` to hide the console window after launch.
+
+## License
+
+Public-domain / CC0 for the code.  
+`logo.png` remains © _you_, used here with permission.
