@@ -7,7 +7,7 @@ RES      := build/$(notdir $(RC:.rc=.res))
 
 MINGW_PREFIX ?= x86_64-w64-mingw32
 
-BUILD_DIR := build/mac
+BUILD_DIR := build/win
 CFLAGS    := -O2 -s -municode
 LDFLAGS   := -luser32
 # ----------------------------
