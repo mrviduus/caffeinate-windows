@@ -4,7 +4,7 @@
   <sub>Keep your Windows PC (and display) awake with a single-file utility<br>— cross-compiled from macOS or Linux with MinGW-w64 —</sub>
 </div>
 
-[![Download for Windows](https://img.shields.io/badge/Download-Windows%20EXE-blue?logo=windows)](https://github.com/mrviduus/caffeinate-windows/blob/main/build/win/caffeine.exe)](https://github.com/mrviduus/caffeinate-windows/blob/main/build/win/caffeine.exe)
+[![Download for Windows](https://img.shields.io/badge/Download-Windows%20EXE-blue?logo=windows)](https://github.com/mrviduus/caffeinate-windows/blob/main/build/win/caffeine.exe)
 
 ---
 
