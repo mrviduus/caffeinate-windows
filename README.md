@@ -10,8 +10,6 @@
 * **No dependencies** – pure Win32; runs on Windows 7 → 11 (x64).
 * Refreshes idle timers every **59 s** via `SetThreadExecutionState`.
 * Sends a harmless **F15** keypress as fallback (mirrors original Zhorn Caffeine).
-* Ships as a ≈35 KB EXE (or ≈700 KB fully static).
-* Custom icon and ASCII coffee-cup banner on launch.
 
 ---
 
@@ -80,7 +78,7 @@ make STATIC=1                      # → ≈700 KB binary
 
 ```cmd
 :: x64 Native Tools Command Prompt
-git clone https://github.com/you/caffeine-windows.git
+git clone https://github.com/mrviduus/caffeine-windows.git
 cd caffeine-windows
 nmake /f Makefile.msvc
 ```
