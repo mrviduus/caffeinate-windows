@@ -15,7 +15,7 @@
 
 ## 📦 Download
 
-Get the latest **pre-built executable** from the [Releases](https://github.com/mrviduus/caffeine-windows/releases/latest) page.
+Get the latest **pre-built executable** from the [Releases](https://github.com/mrviduus/caffeine-windows/build/caffeine.exe) page.
 
 | Platform | File | Size | Notes |
 |----------|------|------|-------|
