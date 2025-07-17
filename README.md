@@ -17,10 +17,10 @@
 
 Get the latest **pre-built executable** from the [Releases](https://github.com/mrviduus/caffeine-windows/build/caffeine.exe) page.
 
-| Platform | File | Size | Notes |
+| Platform | File | Notes |
 |----------|------|------|-------|
-| Windows x64 | `caffeine.exe` | ~35 KB | Requires MSVC runtimes (present on Win 10/11 by default) |
-| Windows x64 (static) | `caffeine-static.exe` | ~700 KB | Fully self‑contained; runs even in WinPE |
+| Windows x64 | `caffeine.exe` | Requires MSVC runtimes (present on Windows 10/11) |
+| Windows x64 | `caffeine-static.exe` | Fully self‑contained; runs even in WinPE |
 
 **Quick start**
 1. Download the file that suits you.
@@ -105,7 +105,7 @@ Exit with **Ctrl + C**; normal power-saving resumes.
 
 ## 📝 Licence
 
-*Code* – [CC0 1.0](LICENSE) (public domain).  
+*Code* – [CC0 1.0](LICENSE) (public domain).
 
 ---
 
