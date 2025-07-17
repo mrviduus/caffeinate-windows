@@ -1,8 +1,3 @@
-// caffeine.rc  – resources for caffeine.exe
 #include <windows.h>
 
-// 1) Executable icon
-IDI_ICON1 ICON "img\\logo.ico"
-
-// 2) Keep the original PNG inside the EXE for future use (type "PNG")
-IDR_PNG1  RCDATA "img\\logo.png"
+IDI_ICON1 ICON "img/logo.ico"
