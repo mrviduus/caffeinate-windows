@@ -1,0 +1,9 @@
+// resources/caffeine.rc
+// ---------------------
+// One resource only: program icon.
+// Make sure resources/img/logo.ico exists.
+
+#include <windows.h>
+#include "resource.h"           // defines IDI_ICON1
+
+IDI_ICON1 ICON "resources/img/logo.ico"
