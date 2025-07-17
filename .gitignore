@@ -20,3 +20,14 @@ Desktop.ini
 
 # Logs
 *.log
+# build artefacts
+
+/*.res
+/*.obj
+/*.o
+
+# VS Code local settings
+.vscode/
+
+# macOS junk
+.DS_Store   

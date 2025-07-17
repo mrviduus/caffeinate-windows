@@ -1,0 +1,39 @@
+Creative Commons Zero v1.0 Universal
+====================================
+
+Statement of Purpose
+--------------------
+The author(s) dedicate the source code in this repository to the public
+domain so that anyone may freely build, modify, distribute, and use it
+for any purpose, commercial or non-commercial, without asking permission.
+
+No copyright is retained for the *code* (all files in **/src** and
+**/resources/caffeine.rc**).
+
+Terms & Conditions
+------------------
+By using, modifying, or distributing the code you agree that:
+
+1. **No warranty.** The software is provided “AS IS”, without warranty
+   of any kind, express or implied, including but not limited to the
+   warranties of merchantability, fitness for a particular purpose and
+   noninfringement.
+
+2. **No attribution required.** You are not required to give credit,
+   though a link back is appreciated.
+
+3. **No limitations.** You may sublicense, sell, or include the code in
+   proprietary software without restriction.
+
+Icon Exception
+--------------
+The file **resources/img/logo.ico** (and its source artwork) is
+**NOT** part of the public-domain dedication.  
+It remains © its original creator and is licensed for inclusion in this
+executable only. If you redistribute the icon separately, please obtain
+permission from the rights holder.
+
+---
+
+For the CC0 full legal code, see  
+<https://creativecommons.org/publicdomain/zero/1.0/legalcode>
