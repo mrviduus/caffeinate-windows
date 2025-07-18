@@ -9,6 +9,7 @@
 PREFIX  ?= x86_64-w64-mingw32
 SRC     := src/caffeine.c
 RCFILE  := resources/caffeine.rc
+ICON    := resources/img/logo.ico
 OUTDIR  := build/win
 RES     := $(OUTDIR)/caffeine.res
 TARGET  := caffeine.exe
@@ -34,7 +35,7 @@ all: dirs $(BIN)
 $(BIN): $(SRC) $(RES)
 	$(PREFIX)-gcc $(CFLAGS) $< $(RES) $(LDFLAGS) -o $@
 
-$(RES): $(RCFILE) | dirs
+$(RES): $(RCFILE) $(ICON) | dirs
 	$(PREFIX)-windres -i $(RCFILE) -O coff -o $(RES)
 
 dirs:
