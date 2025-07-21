@@ -1,13 +1,5 @@
 <div align="center">
-  <img s3. Double‑click the EXE → keep the console window open while you work.
-4. Hit **Ctrl + C** to exit; normal power‑saving resumes.
-
-**Auto-start at login:**
-1. **Easy way**: Edit `startup.bat`, set your caffeine.exe path, then copy it to *shell:startup*
-2. **Manual way**: Place the EXE (or shortcut) in *shell:startup* with command:  
-   `cmd /c start /min "" "C:\path\to\caffeine.exe"`esources/img/logo.ico" alt="Caffeine Windows Logo" width="180" height="180">
-  <h1>Caffeine (Tray Edition)</h1>
-  <sub>Keep your Windows PC (and display) awake with a single-file utility<br>— cross-compiled from macOS or Linux with MinGW-w64 —</sub>
+<img src="resources/img/logo.ico" alt="Caffeine Windows Logo" width="180" height="180">
 </div>
 
 [![Download for Windows](https://img.shields.io/badge/Download-Windows%20EXE-blue?logo=windows)](https://github.com/mrviduus/caffeinate-windows/blob/main/build/win/caffeine.exe)
