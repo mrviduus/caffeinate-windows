@@ -1,9 +1,45 @@
-// resources/caffeine.rc
-// ---------------------
-// One resource only: program icon.
-// Make sure resources/img/logo.ico exists.
+// caffeine.rc - Windows Resource Script
+// =====================================
+// This file defines the application's resources (icon, version info, etc.)
+// It's compiled by windres into a .res file that's linked into the final executable
 
 #include <windows.h>
-#include "resource.h"           // defines IDI_ICON1
+#include "resource.h"
 
-IDI_ICON1 ICON "resources/img/logo.ico"
+// Application Icon
+// IDI_ICON1 is defined in resource.h as 1
+// This icon will be used as the application icon and tray icon
+IDI_ICON1 ICON "img/logo.ico"
+
+// Version Information
+// This appears in the executable's Properties dialog in Windows Explorer
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION     1,0,0,0      // File version as four 16-bit integers
+    PRODUCTVERSION  1,0,0,0      // Product version as four 16-bit integers
+    FILEFLAGSMASK   0x3fL        // Valid bits in FILEFLAGS
+    FILEFLAGS       0x0L         // 0x0L for release, VS_FF_DEBUG for debug builds
+    FILEOS          VOS__WINDOWS32   // Target OS: 32-bit Windows (works on 64-bit too)
+    FILETYPE        VFT_APP          // File type: Application
+    FILESUBTYPE     0x0L             // File subtype: Not used for applications
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        // Language: US English (0x0409), Charset: Unicode (1200)
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName",      "Open Source"
+            VALUE "FileDescription",  "Caffeine - Keep your system awake"
+            VALUE "FileVersion",      "1.0.0.0"
+            VALUE "InternalName",     "caffeine"
+            VALUE "LegalCopyright",   "CC0-1.0 Public Domain"
+            VALUE "OriginalFilename", "caffeine.exe"
+            VALUE "ProductName",      "Caffeine for Windows"
+            VALUE "ProductVersion",   "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        // Language: US English (0x0409), Charset: Unicode (1200)
+        VALUE "Translation", 0x0409, 1200
+    END
+END

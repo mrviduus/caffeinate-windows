@@ -1,46 +1,41 @@
-# Makefile — Windows-only build (x64 GUI, tray edition)
-# =====================================================
-# Generates build/win/caffeine.exe  (~45–50 KB) or a fully
-# static build/win/caffeine-static.exe (~800 KB) if STATIC=1.
-# Requires MinGW-w64 toolchain (x86_64 prefix).
-# -----------------------------------------------------
+# Makefile for Caffeine Windows
+PREFIX = x86_64-w64-mingw32
+CC = $(PREFIX)-gcc
+WINDRES = $(PREFIX)-windres
 
-# —— Configurable vars ——
-PREFIX  ?= x86_64-w64-mingw32
-SRC     := src/caffeine.c
-RCFILE  := resources/caffeine.rc
-ICON    := resources/img/logo.ico
-OUTDIR  := build/win
-RES     := $(OUTDIR)/caffeine.res
-TARGET  := caffeine.exe
+SRC = src/caffeine.c
+RCFILE = resources/caffeine.rc
+ICON = resources/img/logo.ico
+OUTDIR = build/win
+TARGET = caffeine.exe
+BIN = $(OUTDIR)/$(TARGET)
+RES = $(OUTDIR)/caffeine.res
 
-# Compile & link flags
-CFLAGS  := -O2 -s -municode -mwindows -ffunction-sections -fdata-sections
-LDFLAGS := -Wl,--gc-sections -luser32
+CFLAGS = -O2 -s -municode -mwindows -Wall -Iresources
+LDFLAGS = -luser32
 
-ifeq ($(STATIC),1)
-  LDFLAGS += -static
-  TARGET   := caffeine-static.exe
-endif
-
-BIN := $(OUTDIR)/$(TARGET)
-
-# —— Phony targets ——
-.PHONY: all clean dirs
+.PHONY: all clean dirs check
 
 all: dirs $(BIN)
-	@echo "Built $(BIN)"
 
-# —— Build rules ——
 $(BIN): $(SRC) $(RES)
-	$(PREFIX)-gcc $(CFLAGS) $< $(RES) $(LDFLAGS) -o $@
+	$(CC) $(CFLAGS) $(SRC) $(RES) $(LDFLAGS) -o $(BIN)
+	$(PREFIX)-strip --strip-all $(BIN)
+	@echo "✓ Built $(BIN)"
 
-$(RES): $(RCFILE) $(ICON) | dirs
-	$(PREFIX)-windres -i $(RCFILE) -O coff -o $(RES)
+$(RES): $(RCFILE) $(ICON) | dirs  
+	$(WINDRES) -i $(RCFILE) -O coff -o $(RES)
 
 dirs:
-	@mkdir -p $(OUTDIR)
+	mkdir -p $(OUTDIR)
 
 clean:
 	rm -rf $(OUTDIR)
-	@echo "Cleaned build artifacts."
+
+check:
+	@echo "Checking build environment..."
+	@which $(CC) || echo "MinGW GCC not found"
+	@which $(WINDRES) || echo "MinGW windres not found"
+	@test -f $(SRC) && echo "✓ Source file found" || echo "✗ Source file missing"
+	@test -f $(RCFILE) && echo "✓ Resource file found" || echo "✗ Resource file missing"
+	@test -f $(ICON) && echo "✓ Icon file found" || echo "✗ Icon file missing"
