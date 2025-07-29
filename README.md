@@ -20,7 +20,14 @@
 ## 📦 Quick Start
 
 ### Download & Run
-1. Download `caffeine.exe` from the [build/win/](build/win/) directory
+
+#### 📥 Direct Download
+**[Download caffeine.exe](https://github.com/mrviduus/caffeinate-windows/raw/main/build/win/caffeine.exe)** (27KB)
+
+*Alternative download link: [View in GitHub](https://github.com/mrviduus/caffeinate-windows/tree/main/build/win)*
+
+#### 🚀 Installation
+1. Download `caffeine.exe` using the link above
 2. Double-click to run - a coffee cup icon appears in your system tray
 3. Your system will stay awake while the app is running
 4. Right-click the tray icon and select "Exit" to quit
